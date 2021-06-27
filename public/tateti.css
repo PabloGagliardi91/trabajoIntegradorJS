@@ -1,0 +1,83 @@
+
+
+body
+{
+  font-family: 'Lato', sans-serif;
+  background:black;
+  color:white;
+}
+
+h1{
+  text-align:center;
+}
+
+h3{
+  text-align:center;
+}
+.game-title{
+  color:yellow;
+  font-size: large;
+  font-weight: bolder;
+  margin-left: 600px;
+}
+.description{
+  text-align:center;
+  font-size: 12pt;
+}
+
+td
+{
+    width:80px;
+    height:80px;
+    text-align:center;
+    font-size:50pt;
+  border-radius:10px;
+  background:white;
+  color:black;
+  border:solid 4px #222;
+}
+
+td:hover
+{
+    background-color: #5Ec5f1;
+    cursor:pointer;
+  color: black;
+}
+
+.tateti
+{
+  text-align:center;
+  margin:0 auto;
+  width:50%;
+  padding:10px 50px
+}
+
+.tablero
+{
+  float:left;
+  margin-left:20px;
+  width:60%;
+}
+
+.player
+{
+  margin-left: 50px;
+  float:left;
+  width:15%;
+  border-color:darkslategrey;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 25%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.player-points
+{
+  font-size:20pt;
+  padding:10px;
+}
+
+.player-points.selected
+{
+  border-bottom:solid 3px #5Ec5f1;
+}

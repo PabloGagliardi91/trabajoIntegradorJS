@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>dasdsa</title>
+  </head>
+  	<style>
+  	</style>
+  <body>
+  	<div id="miDiv" class="XD"></div>
+  		<input type="button" value= "Piedra" class="botones" onclick="clickeado(this.value)" />
+  		<input type="button" value= "Papel"  class="botones" onclick="clickeado(this.value)"/>
+  		<input type="button" value= "Tijera" class="botones" onclick="clickeado(this.value)"/>
+  		<input type="button" value= "Lagarto"class="botones" onclick="clickeado(this.value)"/>
+  		<input type="button" value= "Spock" class="botones" onclick="clickeado(this.value)"/>
+  		<input type="text"  id="link" readonly="">
+	<script>
+
+		var limite = { mejorDe: 2};
+		var infoSala;
+		const parametro = 'idSala=';
+		let paramPos = window.location.search.indexOf(parametro);
+
+
+		if (paramPos === -1) {
+
+		fetch("/PPTLS/", {method: "POST", headers: {'Content-type': 'application/json'}, body: JSON.stringify(limite)})
+			.then(response => response.json())
+			.then(res => {
+				document.getElementById("link").value = "http://localhost:3000/PPTLS/?idSala="+res.id;
+				console.log(res);
+				infoSala = res;
+			})
+		}
+		else {
+			let url = window.location.search.substring(paramPos + parametro.length);
+			fetch("/PPTLS/"+url, {method: "PATCH"})
+				.then(response => response.json())
+				.then(resp => {
+					console.log(resp);
+					infoSala = resp;
+				});
+			}
+			
+			setTimeout(verificarEstado, 2000);
+
+			function verificarEstado() {
+				fetch("/PPTLS/"+infoSala.id+"/"+infoSala.playerId, {method: "GET"})
+					.then(response => response.json())
+					.then(info => {
+						if (info.movContrario == '' || info.movHost == '' ) {
+							console.log("Esperando...")
+							setTimeout(verificarEstado, 500);
+						}
+						else  {
+							console.log(info.ganePerdiEmpate+ ", El adversario eligio: " + info.movContrario);
+							fetch("/PPTLS/"+infoSala.id+"/"+info.idGanador, {method: "PATCH"})
+								.then(res => res.json())
+								.then (ok => {
+									console.log(ok);
+									modificarBotones(false);
+									if (ok == false)
+										setTimeout(verificarEstado, 500)
+									else
+										console.log("FIN DE LA PARTIDA");
+								})
+						}
+									
+					});
+			}  
+
+		function clickeado(eleccion) {
+		//		modificarBotones(true);
+				infoSala.movimiento = eleccion;
+				const values = {
+				method: "POST",
+				headers: {
+					'Content-type': 'application/json'
+				},
+				body: JSON.stringify(infoSala)
+			};  
+			fetch("/PPTLS/"+infoSala.id, values)
+					.then(response => response.text())
+					.then(exito => {
+						console.log(exito);
+					});
+			};
+
+
+
+			function modificarBotones(accion) {
+				let elems = document.getElementsByClassName("botones");
+				for(let i = 0; i < elems.length; i++) 
+    				elems[i].disabled = accion;
+			}
+
+		
+	</script>
+  </body>
+</html>

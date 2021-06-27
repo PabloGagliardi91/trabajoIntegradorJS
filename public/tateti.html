@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .botones {
+            width: 80px;
+            height: 80px;
+            color: white;
+            background-color: black;
+            font-size: 50px;
+        }
+    </style>
+    <script type="text/javascript" src="../tateti.js"></script>
+
+</head>
+
+<body >
+    <h1>TaTeTi grupo 7</h1>
+    <p>Jugando en el tablero:</p>
+    <p><input type="text" size="55" readonly id="board" /> <input type="button" value="Copiar" onclick="cp()"> <span
+            id="msg"></span></p>
+    <p>Turno: <span id="turn"></span></p>
+    <table border=0> Tablero con botones
+        <tr>
+            <td><input type=button value="" name="btn1" id="btn1" class="botones" onClick="jugada(1)" /></td>
+            <td><input type=button value="" name="btn2" id="btn2" class="botones" onClick="jugada(2)" /></td>
+            <td><input type=button value="" name="btn3" id="btn3" class="botones" onClick="jugada(3)" /></td>
+        </tr>
+        <tr>
+            <td><input type=button value="" name="btn4" id="btn4" class="botones" onClick="jugada(4)" /></td>
+            <td><input type=button value="" name="btn5" id="btn5" class="botones" onClick="jugada(5)" /></td>
+            <td><input type=button value="" name="btn6" id="btn6" class="botones" onClick="jugada(6)" /></td>
+        </tr>
+        <tr>
+            <td><input type=button value="" name="btn7" id="btn7" class="botones" onClick="jugada(7)" /></td>
+            <td><input type=button value="" name="btn8" id="btn8" class="botones" onClick="jugada(8)" /></td>
+            <td><input type=button value="" name="btn9" id="btn9" class="botones" onClick="jugada(9)" /></td>
+        </tr>
+    </table>
+    <input type= button value="Reiniciar Partida"/>
+    <h2>Seminario De Lenguajes - JavaScript</h2>
+
+</body>
+
+</html>
